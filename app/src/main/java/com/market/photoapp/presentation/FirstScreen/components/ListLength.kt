@@ -6,9 +6,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import com.chargemap.compose.numberpicker.NumberPicker
-import com.market.photoapp.TestTags
 
 @Composable
 fun ListLength(
@@ -19,7 +17,7 @@ fun ListLength(
     }
     Column (horizontalAlignment = Alignment.CenterHorizontally ){
         Text(text = "Please pick the size of the list")
-        NumberPicker(modifier = Modifier.fillMaxWidth().testTag(TestTags.NUMBER_LIMIT), value = setNumber!!,onValueChange = {
+        NumberPicker(modifier = Modifier.fillMaxWidth(), value = setNumber!!,onValueChange = {
             pickerValue = it
             listLength(pickerValue)
         }, range = 1..100)

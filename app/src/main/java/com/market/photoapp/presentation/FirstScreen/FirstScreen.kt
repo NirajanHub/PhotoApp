@@ -27,7 +27,6 @@ fun FirstScreen(
     navController: NavController,
     viewModel: FirstScreenViewModel = hiltViewModel()) {
 
-    val values = Values("","",0)
     var firstImage by remember { mutableStateOf<Uri?>(null) }
     var secondImage by remember { mutableStateOf<Uri?>(null) }
     var numberLimit by remember { mutableStateOf<Int?>(null) }

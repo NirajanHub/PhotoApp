@@ -5,7 +5,6 @@ import org.junit.Test
 
 
 class UtilTest {
-
     @Test
    fun `test the triangular number pattern`(){
         val arrayList = Util.getNumberArrayList(21)
