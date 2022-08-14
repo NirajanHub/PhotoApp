@@ -8,7 +8,7 @@ class UtilTest {
 
     @Test
    fun `test the triangular number pattern`(){
-        val arrayList = Util.getNumberArrayList(22)
+        val arrayList = Util.getNumberArrayList(21)
         val rightArrayList = listOf<Int>(1,3,6,10,15,21)
         assertThat(arrayList).isEqualTo(rightArrayList)
     }

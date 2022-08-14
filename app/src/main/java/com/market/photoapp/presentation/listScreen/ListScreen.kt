@@ -17,19 +17,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
+import com.google.accompanist.flowlayout.FlowCrossAxisAlignment
 import com.google.accompanist.flowlayout.FlowMainAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.SizeMode
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.rememberPermissionState
 import com.market.photoapp.presentation.FirstScreen.Util
-import com.market.photoapp.presentation.listScreen.isPermissionDenied
 
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalPermissionsApi::class)
@@ -90,12 +86,13 @@ fun MainScreen(
         item {
             FlowRow(
                 mainAxisSize = SizeMode.Expand,
-                mainAxisAlignment = FlowMainAxisAlignment.SpaceEvenly
+                mainAxisAlignment = FlowMainAxisAlignment.SpaceEvenly,
+                crossAxisAlignment = FlowCrossAxisAlignment.Center
             ) {
-                for (i in 1..numberLimit) {
+                for (i in 0..numberLimit) {
                     if (arraylist.contains(i)) {
                         Image(
-                            bitmap = bitmapFirst.value!!.asImageBitmap(),
+                            bitmap = bitmapSecond.value!!.asImageBitmap(),
                             contentDescription = null,
                             modifier = Modifier
                                 .size(200.dp)
@@ -103,7 +100,7 @@ fun MainScreen(
                         )
                     } else {
                         Image(
-                            bitmap = bitmapSecond.value!!.asImageBitmap(),
+                            bitmap = bitmapFirst.value!!.asImageBitmap(),
                             contentDescription = null,
                             modifier = Modifier
                                 .size(200.dp)

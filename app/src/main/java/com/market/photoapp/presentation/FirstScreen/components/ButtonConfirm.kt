@@ -17,11 +17,14 @@ fun ButtonConfirm(navController: NavController,viewModel: FirstScreenViewModel) 
     Log.d("values" , viewModel.numberLimit.toString())
     Log.d("values" , viewModel.firstImage.toString())
     Log.d("values" , viewModel.secondImage.toString())
+    val firstImage = viewModel.firstImage.value.toString()
+    val secondImage = viewModel.secondImage.value.toString()
+    val numberLimit : Int = viewModel.numberLimit.value!!
     Button(onClick = {
-        if (viewModel.numberLimit > 1 && viewModel.firstImage!!.length > 20 && viewModel.secondImage!!.length > 20) {
+        if (numberLimit > 1 && firstImage.length > 20 && secondImage.length > 20) {
         navController.navigate(
             Screens.ListScreen.route +
-                    "?numberLimit=${viewModel.numberLimit}&firstPhoto=${viewModel.firstImage}&secondPhoto=${viewModel.secondImage}"
+                    "?numberLimit=${numberLimit}&firstPhoto=${firstImage}&secondPhoto=${secondImage}"
         )
     }else{
         Toast.makeText(context,"Please insert Photos and number limit",Toast.LENGTH_LONG).show()

@@ -12,10 +12,10 @@ class Util {
             val arraylist = ArrayList<Int>()
             var j = 1
             for (i in 1..numberLimit step 1) {
-                if (j >= numberLimit)
-                    break
                 arraylist.add(j)
                 j += i + 1
+                if (j > numberLimit)
+                    break
             }
             return arraylist
         }

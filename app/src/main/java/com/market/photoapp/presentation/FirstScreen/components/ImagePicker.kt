@@ -20,17 +20,21 @@ import androidx.compose.ui.unit.dp
 import com.market.photoapp.presentation.FirstScreen.Util
 
 @Composable
-fun PickImageFromGallery(
-    selectedImage: (String?) ->Unit
+fun PickImageFromGallery(firstImage: Uri?,
+    selectedImage: (Uri?) ->Unit
 ) {
     var imageUri by remember { mutableStateOf<Uri?>(null) }
     var context = LocalContext.current
     val bitmap = remember { mutableStateOf<Bitmap?>(null) }
+    if(firstImage.toString().isNotEmpty()){
+        imageUri = firstImage
+    }
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()) { uri: Uri? ->
         imageUri = uri
-        selectedImage(uri.toString())
+        selectedImage(uri)
     }
+
     Column(
         modifier = Modifier.fillMaxHeight(),
         verticalArrangement = Arrangement.Center,
@@ -56,7 +60,9 @@ fun PickImageFromGallery(
             }
         }
         Spacer(modifier = Modifier.height(12.dp))
-        Button(onClick = {
+
+        Button(modifier = Modifier.padding(start = 2.dp, end = 2.dp),
+            onClick = {
             launcher.launch("image/*")
         }) {
             Text(text = "Please pick an image")
