@@ -36,47 +36,14 @@ import com.market.photoapp.presentation.listScreen.isPermissionDenied
 @Composable
 fun ListScreen(numberLimit: Int, firstPhoto: String, secondPhoto: String) {
 
-
     val arraylist = Util.getNumberArrayList(numberLimit = numberLimit)
-    val permissionState = rememberPermissionState(
-        permission = android.Manifest.permission.READ_EXTERNAL_STORAGE
+    MainScreen(
+        numberLimit = numberLimit,
+        arraylist = arraylist,
+        firstPhoto = firstPhoto,
+        secondPhoto = secondPhoto
     )
-    val lifecycleOwner = LocalLifecycleOwner.current
-    DisposableEffect(key1 = lifecycleOwner,
-        effect = {
-            val observer = LifecycleEventObserver { _, event ->
-                if (event == Lifecycle.Event.ON_START) {
-                    permissionState.launchPermissionRequest()
-                }
-            }
-            lifecycleOwner.lifecycle.addObserver(observer)
-            onDispose {
-                lifecycleOwner.lifecycle.removeObserver(observer)
-            }
-        })
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        when {
-            permissionState.hasPermission -> {
-                MainScreen(
-                    numberLimit = numberLimit,
-                    arraylist = arraylist,
-                    firstPhoto = firstPhoto,
-                    secondPhoto = secondPhoto
-                )
-            }
-            permissionState.shouldShowRationale -> {
-                Text(text = "Needs Permission to Show Photos")
-            }
-            permissionState.isPermissionDenied() -> {
-                Text(text = "Permission Denied Permanently! Please goto settings to show permission")
-            }
-        }
 
-    }
 }
 
 

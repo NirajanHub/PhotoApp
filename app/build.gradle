@@ -81,4 +81,9 @@ dependencies {
     //permission
     implementation "com.google.accompanist:accompanist-permissions:0.18.0"
 
+
+    //Unit Test
+    testImplementation "com.google.truth:truth:1.1.3"
+
+
 }
